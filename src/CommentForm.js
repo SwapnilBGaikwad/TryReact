@@ -10,20 +10,16 @@ class CommentForm extends React.Component {
     }
 
     handleSubmit(e) {
-        let authorData = e.target;
-
-        this.setState({
-            author: authorData
-        });
+        e.preventDefault();
+        let author = this._authorInput;
+        let comment = this._bodyInput;
     }
 
     render() {
-        let tag = <p>{this.state.author}</p>;
         return <form onSubmit={this.handleSubmit.bind(this)}>
-            Author : <input type="text" placeholder="Author"/>
-            Comment: <input type="text" placeholder="Comment"/>
+            Author : <input type="text" placeholder="Author" ref={(input) => this._authorInput = input}/>
+            Comment: <input type="text" placeholder="Comment" ref={(commentInput => this._bodyInput = commentInput)}/>
             <input type="button" value="Submit"/>
-            Author State : {tag}
         </form>;
     }
 }
