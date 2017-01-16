@@ -2,17 +2,13 @@ import React from 'react'
 
 class CommentForm extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            author: ""
-        };
-    }
-
     handleSubmit(e) {
         e.preventDefault();
         let author = this._authorInput.value;
         let comment = this._bodyInput.value;
+        this._authorInput.value = "";
+        this._bodyInput.value = "";
+        this.props.addComment(author , comment);
     }
 
     render() {

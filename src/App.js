@@ -4,20 +4,37 @@ import Comment from './Comment'
 
 class App extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            id: 2,
+            comments: [
+                {id: 1, author: "Mr. A", body: "Hello New Comment A"},
+                {id: 2, author: "Mr. B", body: "Hello New Comment B"}
+            ]
+        };
+    }
+
     render() {
         return <div>
-            <CommentForm/>
+            <CommentForm addComment={this.addComment.bind(this)}/>
             {this.getComments()}
         </div>;
     }
 
     getComments() {
-        const comments = [
-            {id: 1, author: "Mr. A", body: "Hello New Comment A"},
-            {id: 2, author: "Mr. B", body: "Hello New Comment B"}
-        ];
-        return comments.map(comment => {
+        return this.state.comments.map(comment => {
             return <Comment key={comment.id} author={comment.author} body={comment.body}/>
+        });
+    }
+
+    addComment(author, body) {
+        this.state.id++;
+        let comment = {id: this.state.id, author: author, body: body};
+        let newComments = this.state.comments;
+        newComments.push(comment);
+        this.setState({
+            comments: newComments
         });
     }
 }
