@@ -2,3 +2,4 @@
 .idea
 TryReact.iml
 node_modules/
+npm-debug.log
