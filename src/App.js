@@ -7,7 +7,6 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            id: 2,
             comments: [
                 {id: 1, author: "Mr. A", body: "Hello New Comment A"},
                 {id: 2, author: "Mr. B", body: "Hello New Comment B"}
@@ -29,8 +28,7 @@ class App extends React.Component {
     }
 
     addComment(author, body) {
-        this.state.id++;
-        let comment = {id: this.state.id, author: author, body: body};
+        let comment = {id: this.state.comments.length + 1, author: author, body: body};
         let newComments = this.state.comments;
         newComments.push(comment);
         this.setState({
